@@ -9,16 +9,15 @@ import {
 } from '@dnd-kit/core';
 import type { DragEndEvent } from '@dnd-kit/core';
 import {
-  arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   horizontalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import type { UserWithComputedFields } from '../../models/types';
+import type { UserWithComputedFields } from '../types';
 import { DraggableTableHeader } from './DraggableTableHeader';
 import { TableRow } from './TableRow';
-import { useTableSort } from '../../controllers/hooks/useTableSort';
-import { useColumnOrder } from '../../controllers/hooks/useColumnOrder';
+import { useTableSort } from '../hooks/useTableSort';
+import { useColumnOrder } from '../hooks/useColumnOrder';
 
 interface DataTableProps {
   data: UserWithComputedFields[];

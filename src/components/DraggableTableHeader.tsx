@@ -1,7 +1,7 @@
 import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import type { ColumnConfig } from "../../models/types";
+import type { ColumnConfig } from "../types";
 
 interface DraggableTableHeaderProps {
   column: ColumnConfig;

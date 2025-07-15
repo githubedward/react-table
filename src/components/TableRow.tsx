@@ -1,5 +1,5 @@
 import React from 'react';
-import type { UserWithComputedFields, ColumnConfig } from '../../models/types';
+import type { UserWithComputedFields, ColumnConfig } from '../types';
 import { TableCell } from './TableCell';
 
 interface TableRowProps {

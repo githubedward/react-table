@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import type { ColumnConfig } from '../../models/types';
-import { saveToStorage, loadFromStorage } from '../../utils/storageUtils';
+import type { ColumnConfig } from '../types';
+import { saveToStorage, loadFromStorage } from '../utils/storageUtils';
 
 const STORAGE_KEY = 'column-order';
 

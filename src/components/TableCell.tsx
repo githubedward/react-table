@@ -1,22 +1,22 @@
 import React from 'react';
-import { formatDate } from '../../utils/userUtils';
+import { formatDate } from '../utils/userUtils';
 
 interface TableCellProps {
-  value: any;
+  value: string | number;
   columnKey: string;
 }
 
 export const TableCell: React.FC<TableCellProps> = ({ value, columnKey }) => {
-  const formatValue = (val: any, key: string) => {
+  const formatValue = (val: string | number, key: string) => {
     switch (key) {
       case 'registrationDate':
-        return formatDate(val);
+        return formatDate(String(val));
       case 'daysSinceRegistered':
         return `${val} days`;
       case 'id':
-        return val.slice(0, 8); // Show first 8 characters of UUID
+        return String(val).slice(0, 8); // Show first 8 characters of UUID
       default:
-        return val;
+        return String(val);
     }
   };
 

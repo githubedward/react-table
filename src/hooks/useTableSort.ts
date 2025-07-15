@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { UserWithComputedFields, SortConfig } from '../../types';
+import type { UserWithComputedFields, SortConfig } from '../types';
 
 interface UseTableSortReturn {
   sortedData: UserWithComputedFields[];

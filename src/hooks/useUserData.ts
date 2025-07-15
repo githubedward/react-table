@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { faker } from '@faker-js/faker';
-import type { User, UserWithComputedFields } from '../../types';
-import { addComputedFieldsToUsers } from '../../utils/userUtils';
-import { saveToStorage, loadFromStorage } from '../../utils/storageUtils';
+import type { User, UserWithComputedFields } from '../types';
+import { addComputedFieldsToUsers } from '../utils/userUtils';
+import { saveToStorage, loadFromStorage } from '../utils/storageUtils';
 
 const STORAGE_KEY = 'user-data';
 const DEFAULT_RECORD_COUNT = 500;
