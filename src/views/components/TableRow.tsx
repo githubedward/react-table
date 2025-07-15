@@ -4,7 +4,7 @@ import { TableCell } from './TableCell';
 
 interface TableRowProps {
   user: UserWithComputedFields;
-  columns: Array<{ key: string; label: string; width?: string }>;
+  columns: Array<{ key: string; label: string; width?: string; sortable?: boolean }>;
 }
 
 export const TableRow: React.FC<TableRowProps> = ({ user, columns }) => {

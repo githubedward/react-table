@@ -86,6 +86,33 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  user-select: none;
+}
+
+.table-header.sortable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.table-header.sortable:hover {
+  background: #edf2f7;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sort-icon {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.table-header.sortable:hover .sort-icon {
+  opacity: 1;
 }
 
 .table-row {
