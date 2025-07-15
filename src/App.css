@@ -65,6 +65,8 @@
   font-size: 1rem;
 }
 
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   #root {
@@ -82,4 +84,6 @@
   .App-header p {
     font-size: 1rem;
   }
+  
+
 }

@@ -3,19 +3,8 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
-  address: {
-    street: string;
-    city: string;
-    state: string;
-    zipCode: string;
-    country: string;
-  };
-  dateOfBirth: string;
+  city: string;
   registrationDate: string;
-  isActive: boolean;
-  role: 'user' | 'admin' | 'moderator';
-  avatar: string;
 }
 
 export interface UserWithComputedFields extends User {

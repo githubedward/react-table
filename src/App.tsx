@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
+import { useUserData } from './controllers/hooks/useUserData';
 
 function App() {
+  const { users, recordCount } = useUserData(500);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -11,9 +14,9 @@ function App() {
       
       <main className="App-main">
         <div className="table-container">
-          {/* Table component will be added in the next commit */}
           <div className="placeholder">
             <h2>Table Component Coming Soon</h2>
+            <p>Generated {recordCount} user records</p>
             <p>This is where the data table will be rendered</p>
           </div>
         </div>
