@@ -1,10 +1,10 @@
 import React from 'react';
-import type { UserWithComputedFields } from '../../models/types';
+import type { UserWithComputedFields, ColumnConfig } from '../../models/types';
 import { TableCell } from './TableCell';
 
 interface TableRowProps {
   user: UserWithComputedFields;
-  columns: Array<{ key: string; label: string; width?: string; sortable?: boolean }>;
+  columns: ColumnConfig[];
 }
 
 export const TableRow: React.FC<TableRowProps> = ({ user, columns }) => {
