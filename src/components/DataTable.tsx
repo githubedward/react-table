@@ -1,4 +1,5 @@
 import React from 'react';
+import { FixedSizeList as List } from 'react-window';
 import {
   DndContext,
   closestCenter,
@@ -15,13 +16,18 @@ import {
 } from '@dnd-kit/sortable';
 import type { UserWithComputedFields } from '../types';
 import { DraggableTableHeader } from './DraggableTableHeader';
-import { TableRow } from './TableRow';
+import { VirtualizedTableRow } from './VirtualizedTableRow';
 import { useTableSort } from '../hooks/useTableSort';
 import { useColumnOrder } from '../hooks/useColumnOrder';
 
 interface DataTableProps {
   data: UserWithComputedFields[];
 }
+
+const ROW_HEIGHT = 50;
+const HEADER_HEIGHT = 60; // Approximate header height
+const CONTAINER_HEIGHT = 400; // Match the CSS data-table height
+const TABLE_HEIGHT = CONTAINER_HEIGHT - HEADER_HEIGHT;
 
 export const DataTable: React.FC<DataTableProps> = ({ data }) => {
   const { sortedData, handleSort, getSortIcon } = useTableSort(data);
@@ -51,9 +57,9 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
       >
-        <table className="table">
-          <thead>
-            <tr>
+        <div className="virtualized-table">
+          <div className="table-header">
+            <div className="table-row">
               <SortableContext
                 items={columns.map(col => col.key)}
                 strategy={horizontalListSortingStrategy}
@@ -67,14 +73,23 @@ export const DataTable: React.FC<DataTableProps> = ({ data }) => {
                   />
                 ))}
               </SortableContext>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedData.map(user => (
-              <TableRow key={user.id} user={user} columns={columns} />
-            ))}
-          </tbody>
-        </table>
+            </div>
+          </div>
+          <div className="table-body">
+            <List
+              height={TABLE_HEIGHT}
+              itemCount={sortedData.length}
+              itemSize={ROW_HEIGHT}
+              itemData={{
+                users: sortedData,
+                columns,
+              }}
+              width="100%"
+            >
+              {VirtualizedTableRow}
+            </List>
+          </div>
+        </div>
       </DndContext>
     </div>
   );

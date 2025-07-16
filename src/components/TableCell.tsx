@@ -21,8 +21,8 @@ export const TableCell: React.FC<TableCellProps> = ({ value, columnKey }) => {
   };
 
   return (
-    <td className="table-cell">
+    <div className="table-cell">
       {formatValue(value, columnKey)}
-    </td>
+    </div>
   );
 }; 

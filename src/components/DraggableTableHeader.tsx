@@ -19,9 +19,9 @@ export const DraggableTableHeader: React.FC<DraggableTableHeaderProps> = ({ colu
   };
 
   return (
-    <th
+    <div
       ref={setNodeRef}
-      style={{ ...style, width: column.width }}
+      style={style}
       className={`table-header sortable ${isDragging ? "dragging" : ""}`}
       {...attributes}
     >
@@ -34,6 +34,6 @@ export const DraggableTableHeader: React.FC<DraggableTableHeaderProps> = ({ colu
           {sortIcon && <span className="sort-icon">{sortIcon}</span>}
         </div>
       </div>
-    </th>
+    </div>
   );
 };

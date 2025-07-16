@@ -66,35 +66,51 @@
 /* Table styles */
 .data-table {
   overflow-x: auto;
-  max-height: 600px;
-  overflow-y: auto;
+  height: 400px;
+  overflow-y: hidden;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
+.virtualized-table {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .table-header {
+  flex-shrink: 0;
   background: #f7fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Table header row */
+.table-header .table-row {
+  display: grid;
+  grid-template-columns: 100px 150px 150px 200px 250px 150px 150px 100px;
+  background: #f7fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Individual header cells */
+.table-header .table-header {
   padding: 0.75rem;
   text-align: left;
   font-weight: 600;
   color: #2d3748;
-  border-bottom: 2px solid #e2e8f0;
-  position: sticky;
-  top: 0;
+  background: #f7fafc;
+  border-bottom: none;
+  position: relative;
   z-index: 10;
   user-select: none;
+  display: flex;
+  align-items: center;
 }
 
-.table-header.sortable {
+.table-header .table-header.sortable {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.table-header.sortable:hover {
+.table-header .table-header.sortable:hover {
   background: #edf2f7;
 }
 
@@ -103,6 +119,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .header-text {
@@ -140,19 +157,15 @@
   transition: opacity 0.2s ease;
 }
 
-.table-header.sortable:hover .sort-icon {
+.table-header .table-header.sortable:hover .sort-icon {
   opacity: 1;
 }
 
 /* Drag and drop styles */
-.table-header.dragging {
+.table-header .table-header.dragging {
   background: #e2e8f0 !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-}
-
-.table-header.sortable {
-  cursor: default;
 }
 
 /* Drag overlay styles */
@@ -160,13 +173,49 @@
   cursor: grabbing;
 }
 
+.table-body {
+  flex: 1;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  table-layout: fixed;
+}
+
+/* Table header cells */
+.table th {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #2d3748;
+  background: #f7fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Virtualized table rows */
 .table-row {
+  display: grid;
+  grid-template-columns: 100px 150px 150px 200px 250px 150px 150px 100px;
   border-bottom: 1px solid #e2e8f0;
   transition: background-color 0.2s ease;
+  background: white;
+}
+
+/* Alternating row colors for virtualized rows */
+.table-row:nth-child(even) {
+  background-color: #f8fafc;
 }
 
 .table-row:hover {
-  background-color: #f7fafc;
+  background-color: #f1f5f9 !important;
+}
+
+/* Virtualization styles */
+.react-window-list {
+  overflow: visible !important;
 }
 
 .table-cell {
@@ -181,8 +230,6 @@
   font-size: 0.8rem;
   color: #718096;
 }
-
-
 
 /* Responsive design */
 @media (max-width: 768px) {
