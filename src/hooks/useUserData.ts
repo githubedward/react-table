@@ -67,8 +67,6 @@ export const useUserData = (recordCount: number = DEFAULT_RECORD_COUNT): UseUser
     if (users.length > 0) {
       // Remove computed fields before saving
       const usersWithoutComputed = users.map(({ fullName, daysSinceRegistered, ...user }) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const _ = { fullName, daysSinceRegistered };
         return user;
       });
       saveToStorage(STORAGE_KEY, usersWithoutComputed);

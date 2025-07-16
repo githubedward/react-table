@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { useUserData } from './hooks/useUserData';
 import { DataTable } from './components/DataTable';
@@ -37,7 +37,7 @@ function App() {
               </button>
               <p style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: '#666' }}>
                 {useVirtualization 
-                  ? 'Only ~7-8 DOM elements rendered (check DevTools!)' 
+                  ? 'Only ~10-12 DOM elements rendered (check DevTools!)' 
                   : 'All 500+ DOM elements rendered (may be slow!)'
                 }
               </p>

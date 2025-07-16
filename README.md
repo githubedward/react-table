@@ -1,69 +1,52 @@
-# React + TypeScript + Vite
+# React Virtualized Table Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates the performance and implementation differences between a virtualized and a non-virtualized table in React.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** (with hooks)
+- **TypeScript**
+- **Vite** (bootstrapped from the official Vite template)
+- **react-window** (for virtualization)
+- **@dnd-kit** (for drag-and-drop column reordering)
+- **faker** (for generating realistic user data)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Virtualized vs Non-virtualized Table Toggle** - Compare performance with 500+ rows
+- **Column Sorting** - Click headers to sort by any column (asc/desc)
+- **Drag-and-Drop Column Reordering** - Drag column headers to reorder
+- **Data Persistence** - User data and column order saved in localStorage
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Approach
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- App is broken into types, hooks for state logic, utils for data manipulation, components for UI which can be broken down further for testability.
+- **Used Cursor for initial setup and assisted development.**
+- Development time was around 1.5 hours cumulative.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Technical Decisions
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **react-window** for virtualization - Industry standard, handles large datasets efficiently
+- **@dnd-kit** for drag-and-drop - Modern, accessible, performant
+- **Custom hooks** for state management - Reusable, testable logic separation
+- **TypeScript** for type safety - Prevents runtime errors, better developer experience
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Performance Observations
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Toggle between virtualized and non-virtualized tables to observe:
+- **DOM nodes**: Virtualized renders ~10-12 rows, non-virtualized renders all 500 rows
+- **Console logs**: Check browser console for row rendering messages
+- **Scrolling performance**: Virtualized remains smooth, non-virtualized may lag
+- **Memory usage**: Virtualized uses significantly less memory
+
+## Running the App
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:5173](http://localhost:5173) in your browser.
